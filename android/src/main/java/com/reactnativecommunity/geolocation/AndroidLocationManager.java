@@ -124,10 +124,10 @@ public class AndroidLocationManager extends BaseLocationManager {
     @Nullable
     private String getValidProvider(LocationManager locationManager, boolean highAccuracy) {
         String provider =
-                highAccuracy ? LocationManager.GPS_PROVIDER : LocationManager.NETWORK_PROVIDER;
+                highAccuracy ? LocationManager.GPS_PROVIDER : LocationManager.FUSED_PROVIDER;
         if (!locationManager.isProviderEnabled(provider)) {
             provider = provider.equals(LocationManager.GPS_PROVIDER)
-                    ? LocationManager.NETWORK_PROVIDER
+                    ? LocationManager.FUSED_PROVIDER
                     : LocationManager.GPS_PROVIDER;
             if (!locationManager.isProviderEnabled(provider)) {
                 return null;
@@ -137,7 +137,7 @@ public class AndroidLocationManager extends BaseLocationManager {
         int finePermission = ContextCompat.checkSelfPermission(mReactContext, android.Manifest.permission.ACCESS_FINE_LOCATION);
         int coarsePermission = ContextCompat.checkSelfPermission(mReactContext, android.Manifest.permission.ACCESS_COARSE_LOCATION);
         if ((provider.equals(LocationManager.GPS_PROVIDER) && finePermission != PackageManager.PERMISSION_GRANTED) ||
-                (provider.equals(LocationManager.NETWORK_PROVIDER) && coarsePermission != PackageManager.PERMISSION_GRANTED)) {
+                (provider.equals(LocationManager.FUSED_PROVIDER) && coarsePermission != PackageManager.PERMISSION_GRANTED)) {
             return null;
         }
         return provider;

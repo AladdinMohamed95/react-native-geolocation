@@ -149,7 +149,7 @@ public class PlayServicesLocationManager extends BaseLocationManager {
         }
         LocationManager locationManager =
                     (LocationManager) mReactContext.getSystemService(Context.LOCATION_SERVICE);
-        return locationManager != null && (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER));
+        return locationManager != null && (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.FUSED_PROVIDER));
     }
 
     private LocationCallback createSingleLocationCallback(Callback success, Callback error) {
